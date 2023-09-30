@@ -9,22 +9,25 @@ import { BrandsComponent } from './brands/brands.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductComponent } from './product/product.component';
+import { authGuard } from './auth.guard';
+import { ProductDetialsComponent } from './product-detials/product-detials.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "home", component: HomeComponent },
-  { path: "about", component: AboutComponent },
-  { path: "categories", component: CategoriesComponent },
-  { path: "product", component: ProductComponent },
-  { path: "cart", component: CartComponent },
-  { path: "brands", component: BrandsComponent },
+  { path: "home", canActivate: [authGuard], component: HomeComponent },
+  { path: "about", canActivate: [authGuard], component: AboutComponent },
+  { path: "categories", canActivate: [authGuard], component: CategoriesComponent },
+  { path: "product", canActivate: [authGuard], component: ProductComponent },
+  { path: "cart", canActivate: [authGuard], component: CartComponent },
+  { path: "brands", canActivate: [authGuard], component: BrandsComponent },
+  { path: "productDetials/:id", canActivate: [authGuard], component: ProductDetialsComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "**", component: NotfoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {userHash:true})],
+  imports: [RouterModule.forRoot(routes,)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
