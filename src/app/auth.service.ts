@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import jwtDecode from 'jwt-decode';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +29,29 @@ export class AuthService {
   changrPassword(userData: object): Observable<any> {
     return this._httpClient.put('https://ecommerce.routemisr.com/api/v1/users/changeMyPassword', userData);
 
+
+  }
+
+  forgetPassword(userEmail: object): Observable<any> {
+    return this._httpClient.post('https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords', userEmail);
+
+
+  }
+
+  finalForgetPasswrod(userData: object): Observable<any> {
+
+    return this._httpClient.put('https://ecommerce.routemisr.com/api/v1/auth/resetPassword', userData);
+
+
+  }
+
+  resterPasswrd(userData: object): Observable<any> {
+    return this._httpClient.put('https://ecommerce.routemisr.com/api/v1/auth/resetPassword', userData)
+
+  }
+
+  verifyResetCode(userData: object): Observable<any> {
+    return this._httpClient.post('https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode', userData)
 
   }
   decodeUserData() {

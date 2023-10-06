@@ -3,14 +3,18 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SettingsRoutingModule } from './settings-routing.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ResetPasswrodComponent } from './reset-passwrod/reset-passwrod.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { VerifyCodeComponent } from './verify-code/verify-code.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
     ChangePasswordComponent,
-    ResetPasswrodComponent
+    ResetPasswordComponent,
+    VerifyCodeComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     CommonModule,
