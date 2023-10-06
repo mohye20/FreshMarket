@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -21,6 +21,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MainSliderComponent } from './main-slider/main-slider.component';
 import { TestPipe } from './test.pipe';
 import { SearchPipe } from './search.pipe';
+import { FilterProductsPipe } from './filter-products.pipe';
+import { OrdersComponent } from './orders/orders.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import {HttpInterceporInterceptor} from "./http-intercepor.interceptor";
+import { LoaderComponent } from './loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +44,10 @@ import { SearchPipe } from './search.pipe';
     MainSliderComponent,
     TestPipe,
     SearchPipe,
+    FilterProductsPipe,
+    OrdersComponent,
+    CheckOutComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +59,13 @@ import { SearchPipe } from './search.pipe';
     FormsModule,
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpInterceporInterceptor,
+      multi:true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

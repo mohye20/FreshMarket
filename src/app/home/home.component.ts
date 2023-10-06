@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../product';
-
+import { CartService } from '../cart.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,11 +10,49 @@ import { Product } from '../product';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _productService: ProductsService) {
+  constructor(private _productService: ProductsService,
+    private _cartService: CartService) {
+
   }
 
+  categories: any[] = [];
+
+
+  addToCart(productId: string) {
+    this._cartService.addToCart(productId).subscribe({
+      next: (res) => {
+        console.log(res);
+
+      },
+      error: (err) => {
+        console.log(err);
+
+      },
+    })
+  }
+
+  
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 7
+      },
+
+    },
+    nav: true
+  }
+
+
   products: Product[] = [];
-  searchTerm:string  = '';
+  searchTerm: string = '';
   ngOnInit(): void {
     this._productService.getProducts().subscribe({
       next: (res) => {
@@ -24,6 +63,13 @@ export class HomeComponent implements OnInit {
       }
     })
 
+    this._productService.getCategories().subscribe({
+      next: (res) => {
+        this.categories = res.data
+      }
+    })
   }
+
+  
 
 }

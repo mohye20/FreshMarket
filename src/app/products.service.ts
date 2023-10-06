@@ -15,12 +15,18 @@ export class ProductsService {
     return this._httpClient.get('https://ecommerce.routemisr.com/api/v1/products');
   }
 
+  getBrands(): Observable<any> {
+    return this._httpClient.get('https://ecommerce.routemisr.com/api/v1/brands');
+
+
+  }
+
   getProductDetails(id: string): Observable<any> {
     return this._httpClient.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
 
   }
 
-  getCategories() :Observable<any> {
+  getCategories(): Observable<any> {
     return this._httpClient.get('https://ecommerce.routemisr.com/api/v1/categories')
   }
 

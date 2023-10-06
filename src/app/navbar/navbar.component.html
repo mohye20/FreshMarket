@@ -54,7 +54,16 @@
                     <span class="nav-link cursor-pointer" routerLink="product">logOut</span>
                 </li>
 
+                <li *ngIf="isLogin" class="nav-item">
+                    <a class="nav-link cursor-pointer" routerLink="setting">Setting</a>
+                </li>
 
+              <li *ngIf="isLogin" class="nav-item position-relative">
+                <a class="nav-link cursor-pointer" routerLink="/cart">
+                  <i class="fa fs-3 text-black fa-shopping-cart"></i>
+                  <span class="badge bg-main position-absolute  top-0  end-0 ">{{numOfCartItems}}</span>
+                </a>
+              </li>
 
 
             </ul>

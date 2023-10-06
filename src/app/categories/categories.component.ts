@@ -10,11 +10,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: any[] = [];
   constructor(private _productsService: ProductsService) {
 
-
   }
+  categories: any[] = [];
+
 
   ngOnInit(): void {
     this._productsService.getCategories().subscribe({
@@ -22,26 +22,7 @@ export class CategoriesComponent implements OnInit {
         this.categories = res.data
       }
     })
-  }
 
-
-
-
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 7
-      },
-
-    },
-    nav: true
   }
 
 
