@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -24,8 +24,9 @@ import { SearchPipe } from './search.pipe';
 import { FilterProductsPipe } from './filter-products.pipe';
 import { OrdersComponent } from './orders/orders.component';
 import { CheckOutComponent } from './check-out/check-out.component';
-import {HttpInterceporInterceptor} from "./http-intercepor.interceptor";
+import { HttpInterceporInterceptor } from "./http-intercepor.interceptor";
 import { LoaderComponent } from './loader/loader.component';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { LoaderComponent } from './loader/loader.component';
     OrdersComponent,
     CheckOutComponent,
     LoaderComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -57,13 +59,14 @@ import { LoaderComponent } from './loader/loader.component';
     BrowserAnimationsModule,
     CarouselModule,
     FormsModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:HttpInterceporInterceptor,
-      multi:true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceporInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent]

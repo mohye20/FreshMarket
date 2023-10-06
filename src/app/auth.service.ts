@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import jwtDecode from 'jwt-decode';
-import { Route, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,18 +10,24 @@ export class AuthService {
 
 
   userData = new BehaviorSubject(null);
-  constructor(private _httpClient: HttpClient,private _router:Router) {
+  constructor(private _httpClient: HttpClient, private _router: Router) {
 
-    if(localStorage.getItem('userToken')!=null){
+    if (localStorage.getItem('userToken') != null) {
       this.decodeUserData()
     }
   }
 
 
-  logOut(){
+  logOut() {
     localStorage.removeItem('userToken');
     this.userData.next(null);
     this._router.navigate(["/login"]);
+
+
+  }
+
+  changrPassword(userData: object): Observable<any> {
+    return this._httpClient.put('https://ecommerce.routemisr.com/api/v1/users/changeMyPassword', userData);
 
 
   }

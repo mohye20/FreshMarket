@@ -3,6 +3,7 @@ import { ProductsService } from '../products.service';
 import { Product } from '../product';
 import { CartService } from '../cart.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,7 +12,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class HomeComponent implements OnInit {
 
   constructor(private _productService: ProductsService,
-    private _cartService: CartService) {
+    private _cartService: CartService,
+    private _toastrService: ToastrService
+  ) {
 
   }
 
@@ -22,6 +25,7 @@ export class HomeComponent implements OnInit {
     this._cartService.addToCart(productId).subscribe({
       next: (res) => {
         console.log(res);
+        this._toastrService.success(res.message)
 
       },
       error: (err) => {
@@ -31,7 +35,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  
+
 
   customOptions: OwlOptions = {
     loop: true,
@@ -70,6 +74,6 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  
+
 
 }
