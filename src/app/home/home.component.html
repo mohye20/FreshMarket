@@ -34,7 +34,10 @@
 
                 </div>
             </a>
-            <button (click)="addToCart(product._id)" class="btn bg-main text-white my-2 w-100">+ Add </button>
+          <i *ngIf="!wishListData.includes(product._id)" (click)="addWishList(product._id)"  class="fa-solid fa-heart ms-auto d-block h3"></i>
+          <i *ngIf="wishListData.includes(product._id)" (click)="removeWishListItem(product._id)"  class="fa-solid fa-heart text-danger ms-auto d-block h3"></i>
+            <button  (click)="addToCart(product._id)" class="btn bg-main text-white my-2 w-100">+ Add </button>
         </div>
     </div>
 </div>
+

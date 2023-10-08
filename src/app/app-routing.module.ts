@@ -13,6 +13,7 @@ import { authGuard } from './auth.guard';
 import { ProductDetialsComponent } from './product-detials/product-detials.component';
 import { OrdersComponent } from './orders/orders.component';
 import {CheckOutComponent} from "./check-out/check-out.component";
+import {WishListComponent} from "./wish-list/wish-list.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   {   path:'check-out/:cartId' , component:CheckOutComponent},
   { path: "allorders", component: OrdersComponent },
+  { path: "whitlist", component: WishListComponent },
   { path: 'setting', loadChildren: () => import("./settings/settings.module").then((m) => m.SettingsModule) },
   { path: "**", component: NotfoundComponent },
 ];

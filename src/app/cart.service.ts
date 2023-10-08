@@ -37,9 +37,9 @@ export class CartService {
 
   }
 
-  
 
-  
+
+
 
 
   updateCartCount(productId: string, count: number): Observable<any> {
@@ -56,7 +56,7 @@ export class CartService {
   }
 
 
-  addToCart(productId: string): Observable<any> {
+    addToCart(productId: string): Observable<any> {
 
     return this._httpClient.post(`https://ecommerce.routemisr.com/api/v1/cart`,
       { productId: productId },

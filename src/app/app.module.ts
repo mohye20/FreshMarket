@@ -27,6 +27,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { HttpInterceporInterceptor } from "./http-intercepor.interceptor";
 import { LoaderComponent } from './loader/loader.component';
 import { ToastrModule } from 'ngx-toastr';
+import { WishListComponent } from './wish-list/wish-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { ToastrModule } from 'ngx-toastr';
     OrdersComponent,
     CheckOutComponent,
     LoaderComponent,
+    WishListComponent,
 
   ],
   imports: [

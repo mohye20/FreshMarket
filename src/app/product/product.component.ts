@@ -15,6 +15,7 @@ export class ProductComponent {
 
   }
 
+
   addToCart(productId: string) {
     this._cartService.addToCart(productId).subscribe({
       next: (res) => {

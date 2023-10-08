@@ -4,6 +4,7 @@ import { Product } from '../product';
 import { CartService } from '../cart.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ToastrService } from 'ngx-toastr';
+import {WishListService} from "../wish-list.service";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,14 +14,45 @@ export class HomeComponent implements OnInit {
 
   constructor(private _productService: ProductsService,
     private _cartService: CartService,
-    private _toastrService: ToastrService
+    private _toastrService: ToastrService,
+    private _WishListService:WishListService
   ) {
 
   }
-
+  isAdded:boolean = false
   categories: any[] = [];
+wishListData:string[] = [];
+addWishList(id:string){
+  this._WishListService.addToWishList(id).subscribe({
+    next:(res)=>{
+      console.log(res);
+      this._toastrService.success(res.message)
+      this.wishListData =  res.data ;
+      console.log(this.wishListData)
 
+    },
+    error:(err)=>{
+      console.log(err)
 
+    }
+  })
+
+}
+
+  removeWishListItem(id:string){
+  this._WishListService.removeWishListItem(id).subscribe({
+    next:(res)=>{
+      console.log(res)
+      this._toastrService.success(res.message)
+
+      this.wishListData = res.data ;
+      console.log(this.wishListData)
+    },
+    error:(err)=>{
+      console.log(err)
+    }
+  })
+  }
   addToCart(productId: string) {
     this._cartService.addToCart(productId).subscribe({
       next: (res) => {
@@ -70,6 +102,13 @@ export class HomeComponent implements OnInit {
     this._productService.getCategories().subscribe({
       next: (res) => {
         this.categories = res.data
+      }
+    })
+
+    this._WishListService.getWishList().subscribe({
+      next:(res)=>{
+        console.log(res)
+        this.wishListData = res.data.map((m:any)=>m._id);
       }
     })
   }

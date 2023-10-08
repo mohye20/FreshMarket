@@ -14,12 +14,16 @@ export class ProductsService {
 
     return this._httpClient.get('https://ecommerce.routemisr.com/api/v1/products');
   }
+  headers: any = {
+    token: localStorage.getItem('userToken')
 
+  }
   getBrands(): Observable<any> {
     return this._httpClient.get('https://ecommerce.routemisr.com/api/v1/brands');
 
 
   }
+
 
   getProductDetails(id: string): Observable<any> {
     return this._httpClient.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
